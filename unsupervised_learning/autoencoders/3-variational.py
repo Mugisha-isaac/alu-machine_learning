@@ -5,7 +5,6 @@ Defines function that creates a variational autoencoder
 
 
 import tensorflow.keras as keras
-import tensorflow as tf
 
 
 def autoencoder(input_dims, hidden_layers, latent_dims):
@@ -35,10 +34,10 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
             z (tensor): sampled latent vector
         """
         z_mean, z_log_var = args
-        batch = tf.shape(z_mean)[0]
-        dim = tf.shape(z_mean)[1]
-        epsilon = tf.keras.backend.random_normal(shape=(batch, dim))
-        return z_mean + tf.exp(0.5 * z_log_var) * epsilon
+        batch = keras.backend.shape(z_mean)[0]
+        dim = keras.backend.shape(z_mean)[1]
+        epsilon = keras.backend.random_normal(shape=(batch, dim))
+        return z_mean + keras.backend.exp(0.5 * z_log_var) * epsilon
 
     # encoder
     encoder_inputs = keras.Input(shape=(input_dims,))
